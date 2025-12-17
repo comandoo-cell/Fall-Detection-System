@@ -525,9 +525,11 @@ in the Software without restriction...
 
 ## 📞 İletişim
 
+
 - 📧 **Email**: ka5898522@gmail.com
-- 🐙 **GitHub**: [@comandoo-cell](https://github.com/comandoo-cell)
-- 💼 **LinkedIn**: [MUHAMMED MUHAMMED]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/muhammed-muhammed-099958352/))
+- 🐙 **GitHub**: https://github.com/comandoo-cell
+- 💼 **LinkedIn**: https://www.linkedin.com/in/muhammed-muhammed-099958352/
+
 
 
 ---
