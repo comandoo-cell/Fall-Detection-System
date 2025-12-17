@@ -3,10 +3,10 @@
 <div align="center">
 
 [![Python](https://img.shields.io/badge/Python-3.9%20%7C%203.10%20%7C%203.11-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](https://github.com/yourusername/fall-detection/actions)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](https://github.com/comandoo-cell/Fall-Detection-System)
 [![Coverage](https://img.shields.io/badge/coverage-85%25-green.svg)](https://codecov.io)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Code Quality](https://img.shields.io/badge/code%20quality-A-brightgreen.svg)](https://github.com/yourusername/fall-detection)
+[![Code Quality](https://img.shields.io/badge/code%20quality-A-brightgreen.svg)](https://github.com/comandoo-cell/Fall-Detection-System)
 
 **Yapay zeka destekli gerçek zamanlı düşme tespit sistemi**
 
@@ -198,8 +198,10 @@ Gerçek veri üzerinde yapılan deneylerde sistem; ayakta, oturma, çömelme ve 
 
 ```bash
 # 1. Projeyi klonlayın
-git clone https://github.com/yourusername/fall-detection.git
-cd fall-detection
+git clone https://github.com/comandoo-cell/Fall-Detection-System.git
+cd Fall-Detection-System
+
+
 
 # 2. Sanal ortam oluşturun (önerilir)
 python -m venv venv
@@ -514,7 +516,7 @@ Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICE
 ```
 MIT License
 
-Copyright (c) 2024 [Your Name]
+Copyright (c) 2025 [MUHAMMED MUHAMMED]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -549,7 +551,9 @@ Bu proje aşağıdaki açık kaynak projelerden yararlanmaktadır:
 
 **⭐ Projeyi beğendiyseniz star vermeyi unutmayın! ⭐**
 
-Made with ❤️ by [Your Name]
+Made with ❤️ by Muhammed Muhammed
+
+
 
 [⬆ Başa Dön](#-düşme-tespit-sistemi--fall-detection-system)
 
