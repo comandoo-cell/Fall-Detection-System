@@ -525,10 +525,10 @@ in the Software without restriction...
 
 ## 📞 İletişim
 
-- 📧 **Email**: your.email@example.com
-- 🐙 **GitHub**: [@yourusername](https://github.com/yourusername)
-- 💼 **LinkedIn**: [Your Name](https://linkedin.com/in/yourprofile)
-- 🌐 **Website**: [yourwebsite.com](https://yourwebsite.com)
+- 📧 **Email**: ka5898522@gmail.com
+- 🐙 **GitHub**: [@comandoo-cell](https://github.com/comandoo-cell)
+- 💼 **LinkedIn**: [MUHAMMED MUHAMMED]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/muhammed-muhammed-099958352/))
+
 
 ---
 
