@@ -1,0 +1,106 @@
+# Production Configuration for Fall Detection System
+# =================================================
+
+detection:
+  # Optimized for production environments
+  angle_threshold: 58.0           # Slightly more sensitive
+  confidence_threshold: 65.0      # Higher confidence required
+  velocity_threshold: 0.4         # More sensitive velocity
+  aspect_ratio_threshold: 1.0     
+  
+  history_size: 15                # Longer history for stability
+  min_fall_frames: 5              # More frames required to confirm
+  
+  sitting_threshold: 65.0
+  crouching_threshold: 70.0
+
+performance:
+  max_fps: 25                     # Limit FPS for stability
+  buffer_size: 1
+  use_gpu: true                   # Enable GPU if available
+  frame_skip: 1
+  
+  width: 1280                     # Higher resolution
+  height: 720
+  
+  use_threading: true             # Enable multi-threading
+  max_workers: 4
+
+models:
+  mediapipe:
+    min_detection_confidence: 0.6 # Higher confidence
+    min_tracking_confidence: 0.6
+    model_complexity: 2           # Best quality
+  
+  yolov8:
+    model_name: "yolov8m-pose.pt" # Medium model (better accuracy)
+    confidence: 0.6
+    iou_threshold: 0.45
+    max_det: 20
+
+logging:
+  level: "WARNING"                # Less verbose
+  directory: "/var/log/fall-detection/"
+  max_file_size: 52428800         # 50MB
+  max_files: 90                   # 90 days
+  console_output: false           # No console output
+  
+  include_timestamp: true
+  include_function_name: true
+  include_line_number: true
+
+ui:
+  theme: "dark"
+  page_title: "Fall Detection System"
+  page_icon: "🚨"
+  layout: "wide"
+  
+  show_landmarks: true
+  show_bounding_box: true
+  show_confidence: true
+  show_statistics: true
+  
+  fall_color: [0, 0, 255]
+  normal_color: [0, 255, 0]
+  warning_color: [0, 165, 255]
+
+alerts:
+  enable_sound: true
+  sound_duration: 2000            # Longer alert
+  sound_frequency: 1200
+  
+  enable_notifications: true      # Enable notifications
+  notification_cooldown: 5        # Faster notifications
+
+camera:
+  default_device: 0
+  reconnect_attempts: 5           # More attempts
+  reconnect_delay: 3000
+  
+  min_brightness: 25              # More tolerant
+  max_blank_frames: 15
+
+export:
+  save_directory: "/data/fall-detection/exports/"
+  video_format: "mp4"
+  video_codec: "h264"             # Better compression
+  csv_separator: ","
+  include_timestamp: true
+
+# Production settings
+production:
+  enable_monitoring: true         # Enable system monitoring
+  health_check_interval: 60       # Health check every 60 seconds
+  auto_restart: true              # Auto restart on critical errors
+  max_memory_mb: 4096             # Memory limit (4GB)
+  
+  # Backup settings
+  enable_backup: true
+  backup_interval: 86400          # Daily backups (seconds)
+  backup_directory: "/backup/fall-detection/"
+  max_backups: 30
+
+development:
+  debug_mode: false
+  show_fps: false
+  save_debug_frames: false

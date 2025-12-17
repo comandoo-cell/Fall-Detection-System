@@ -1,0 +1,112 @@
+# Default Configuration for Fall Detection System
+# ==============================================
+
+detection:
+  # Fall detection thresholds
+  angle_threshold: 60.0           # Body angle threshold in degrees (lower = more sensitive)
+  confidence_threshold: 60.0      # Minimum confidence score (0-100)
+  velocity_threshold: 0.5         # Velocity threshold for fall detection
+  aspect_ratio_threshold: 1.0     # Width/height ratio threshold
+  
+  # History settings
+  history_size: 10                # Number of frames to keep in history
+  min_fall_frames: 3              # Minimum frames to confirm fall
+  
+  # Edge case handling
+  sitting_threshold: 65.0         # Threshold for sitting position
+  crouching_threshold: 70.0       # Threshold for crouching position
+
+performance:
+  # Performance settings
+  max_fps: 30                     # Maximum frames per second to process
+  buffer_size: 1                  # Video capture buffer size
+  use_gpu: false                  # Use GPU acceleration if available
+  frame_skip: 1                   # Process every Nth frame (1 = all frames)
+  
+  # Video resolution
+  width: 640                      # Frame width
+  height: 480                     # Frame height
+  
+  # Multi-threading
+  use_threading: false            # Enable multi-threaded processing
+  max_workers: 2                  # Maximum worker threads
+
+models:
+  # MediaPipe settings
+  mediapipe:
+    min_detection_confidence: 0.5
+    min_tracking_confidence: 0.5
+    model_complexity: 1           # 0, 1, or 2 (higher = more accurate but slower)
+  
+  # YOLOv8 settings
+  yolov8:
+    model_name: "yolov8n-pose.pt" # Model file name
+    confidence: 0.5               # Detection confidence threshold
+    iou_threshold: 0.45           # NMS IoU threshold
+    max_det: 10                   # Maximum detections per frame
+
+logging:
+  # Logging configuration
+  level: "INFO"                   # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  directory: "logs/"              # Log directory
+  max_file_size: 10485760         # Max log file size in bytes (10MB)
+  max_files: 30                   # Maximum number of log files to keep
+  console_output: true            # Print logs to console
+  
+  # Log details
+  include_timestamp: true
+  include_function_name: true
+  include_line_number: true
+
+ui:
+  # Streamlit UI settings
+  theme: "dark"                   # light or dark
+  page_title: "Dusme Tespit Sistemi"
+  page_icon: "🚨"
+  layout: "wide"
+  
+  # Display settings
+  show_landmarks: true            # Draw pose landmarks
+  show_bounding_box: true         # Draw bounding boxes
+  show_confidence: true           # Show confidence scores
+  show_statistics: true           # Show statistics panel
+  
+  # Colors (BGR format)
+  fall_color: [0, 0, 255]         # Red
+  normal_color: [0, 255, 0]       # Green
+  warning_color: [0, 165, 255]    # Orange
+
+alerts:
+  # Alert settings
+  enable_sound: true              # Enable sound alerts
+  sound_duration: 1000            # Alert sound duration (ms)
+  sound_frequency: 1000           # Alert sound frequency (Hz)
+  
+  # Notification settings
+  enable_notifications: false     # Enable system notifications
+  notification_cooldown: 10       # Seconds between notifications
+
+camera:
+  # Camera settings
+  default_device: 0               # Default camera device ID
+  reconnect_attempts: 3           # Max reconnection attempts
+  reconnect_delay: 2000           # Delay between reconnect attempts (ms)
+  
+  # Validation
+  min_brightness: 30              # Minimum acceptable brightness
+  max_blank_frames: 10            # Max consecutive blank frames
+
+export:
+  # Export settings
+  save_directory: "exports/"      # Directory for saved files
+  video_format: "mp4"             # Video format (mp4, avi)
+  video_codec: "mp4v"             # Video codec
+  csv_separator: ","              # CSV separator
+  include_timestamp: true         # Include timestamps in exports
+
+# Development settings (not for production)
+development:
+  debug_mode: false               # Enable debug mode
+  show_fps: true                  # Show FPS counter
+  save_debug_frames: false        # Save frames for debugging
+  debug_output_dir: "debug/"      # Debug output directory

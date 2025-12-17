@@ -11,10 +11,15 @@ from datetime import datetime
 from typing import Optional
 from collections import deque
 sys.path.insert(0, str(Path(__file__).parent / 'src'))
-from pose_estimator import PoseEstimator
-from multi_person_detector import MultiPersonDetector
-from fall_detector import FallDetector
-from video_url_handler import VideoURLHandler
+from src.models.pose_estimator import PoseEstimator
+from src.models.multi_person_detector import MultiPersonDetector
+from src.core.fall_detector import FallDetector
+from src.utils.error_handler import error_handler
+from src.utils.video_processor import VideoProcessor, CameraManager
+try:
+    from video_url_handler import VideoURLHandler
+except ImportError:
+    VideoURLHandler = None
 st.set_page_config(
     page_title="Dusme Tespit Sistemi",
     page_icon="🚨",
