@@ -457,6 +457,6 @@ if start_btn:
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: white; padding: 20px;'>
-    <p>© 2025 Developed by [Your Name] | Dusme Tespit Sistemi</p>
+    <p>© 2025 Developed by [MUHAMMED MUHAMMED] | Dusme Tespit Sistemi</p>
 </div>
 """, unsafe_allow_html=True)

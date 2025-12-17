@@ -6,7 +6,7 @@ Handles camera issues, lighting problems, and frame processing errors
 import cv2
 import numpy as np
 from typing import Optional, Tuple
-from src.error_handler import error_handler
+from src.utils.error_handler import error_handler
 
 
 class VideoProcessor:

@@ -74,8 +74,12 @@ Bu proje, **gerçek zamanlı düşme tespiti** için geliştirilmiş **yapay zek
 *Aynı anda birden fazla kişi izleme*
 
 </div>
+### 🎥 Tanıtım Videosu
 
-> **Not**: Demo videoları ve ekran görüntüleri yakında eklenecektir. Sistemi test etmek için [Hızlı Başlangıç](#-hızlı-başlangıç) bölümüne bakın.
+[YouTube Tanıtım Videosu Buradan İzlenebilir](https://youtu.be/_2Q7J1xXG0Y)
+
+
+> 
 
 ---
 
