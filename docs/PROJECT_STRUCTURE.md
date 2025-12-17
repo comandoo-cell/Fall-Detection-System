@@ -1,130 +1,130 @@
-# Project Structure Documentation
+# Proje Yapısı Dokümantasyonu
 
-## 📁 Complete Directory Structure
+## 📁 Tam Dizin Yapısı
 
 ```
 all-detection-system/
 │
-├── .github/                          # GitHub configuration
-│   └── workflows/                    # CI/CD pipelines
-│       ├── tests.yml                 # Automated testing
-│       └── code_quality.yml          # Code quality checks
+├── .github/                          # GitHub ayarları
+│   └── workflows/                    # CI/CD pipeline'ları
+│       ├── tests.yml                 # Otomatik testler
+│       └── code_quality.yml          # Kod kalitesi kontrolleri
 │
-├── src/                              # Source code
-│   ├── core/                         # Core detection algorithms
+├── src/                              # Kaynak kod
+│   ├── core/                         # Çekirdek düşme tespit algoritmaları
 │   │   ├── __init__.py
-│   │   └── fall_detector.py          # Main fall detection logic
+│   │   └── fall_detector.py          # Ana düşme tespit mantığı
 │   │
-│   ├── models/                       # ML models management
+│   ├── models/                       # ML model yönetimi
 │   │   ├── __init__.py
-│   │   ├── pose_estimator.py         # MediaPipe pose detection
-│   │   └── multi_person_detector.py  # YOLOv8 multi-person detection
+│   │   ├── pose_estimator.py         # MediaPipe pose tespiti
+│   │   └── multi_person_detector.py  # YOLOv8 çoklu kişi tespiti
 │   │
-│   ├── utils/                        # Utility modules
+│   ├── utils/                        # Yardımcı modüller
 │   │   ├── __init__.py
-│   │   ├── error_handler.py          # Error handling & logging
-│   │   ├── video_processor.py        # Video processing utilities
-│   │   └── video_url_handler.py      # URL video handling
+│   │   ├── error_handler.py          # Hata işleme ve loglama
+│   │   ├── video_processor.py        # Video işleme yardımcıları
+│   │   └── video_url_handler.py      # URL video işleme
 │   │
-│   └── ui/                           # User interface
+│   └── ui/                           # Kullanıcı arayüzü
 │       ├── __init__.py
-│       └── streamlit_app.py          # Streamlit web interface
+│       └── streamlit_app.py          # Streamlit web arayüzü
 │
-├── tests/                            # Unit tests
+├── tests/                            # Birim testleri
 │   ├── __init__.py
-│   ├── test_fall_detector.py         # Fall detector tests
-│   ├── test_pose_estimator.py        # Pose estimation tests
-│   └── test_integration.py           # Integration tests
+│   ├── test_fall_detector.py         # Düşme tespit testi
+│   ├── test_pose_estimator.py        # Pose tespit testleri
+│   └── test_integration.py           # Entegrasyon testleri
 │
-├── benchmarks/                       # Performance benchmarks
-│   ├── run_benchmarks.py             # Benchmark runner
-│   ├── benchmark_results.json        # Results output
-│   └── README.md                     # Benchmark documentation
+├── benchmarks/                       # Performans benchmark'ları
+│   ├── run_benchmarks.py             # Benchmark çalıştırıcısı
+│   ├── benchmark_results.json        # Sonuç çıktıları
+│   └── README.md                     # Benchmark dokümantasyonu
 │
-├── examples/                         # Examples and demos
-│   ├── README.md                     # Examples documentation
-│   ├── RESULTS.md                    # Expected results
-│   ├── screenshots/                  # UI screenshots
-│   ├── results/                      # Sample test results
-│   └── usage_examples/               # Code examples
+├── examples/                         # Örnekler ve demolar
+│   ├── README.md                     # Örnek dokümantasyonu
+│   ├── RESULTS.md                    # Beklenen sonuçlar
+│   ├── screenshots/                  # Arayüz ekran görüntüleri
+│   ├── results/                      # Örnek test sonuçları
+│   └── usage_examples/               # Kod örnekleri
 │
-├── docs/                             # Documentation
-│   ├── API.md                        # API documentation
-│   ├── ARCHITECTURE.md               # System architecture
-│   ├── DEPLOYMENT.md                 # Deployment guide
-│   └── FAQ.md                        # Frequently asked questions
+├── docs/                             # Dokümantasyon
+│   ├── API.md                        # API dokümantasyonu
+│   ├── ARCHITECTURE.md               # Sistem mimarisi
+│   ├── DEPLOYMENT.md                 # Dağıtım rehberi
+│   └── FAQ.md                        # Sık sorulan sorular
 │
-├── configs/                          # Configuration files
-│   ├── default_config.yaml           # Default configuration
-│   └── production_config.yaml        # Production settings
+├── configs/                          # Yapılandırma dosyaları
+│   ├── default_config.yaml           # Varsayılan yapılandırma
+│   └── production_config.yaml        # Production ayarları
 │
-├── logs/                             # Log files (git ignored)
-│   └── fall_detection_YYYYMMDD.log   # Daily log files
+├── logs/                             # Log dosyaları (git'e dahil değil)
+│   └── fall_detection_YYYYMMDD.log   # Günlük log dosyaları
 │
-├── models/                           # Pre-trained models
-│   └── yolov8n-pose.pt               # YOLOv8 Nano Pose model
+├── models/                           # Önceden eğitilmiş modeller
+│   └── yolov8n-pose.pt               # YOLOv8 Nano Pose modeli
 │
-├── app_fast.py                       # Main application entry point
-├── requirements.txt                  # Python dependencies
-├── .gitignore                        # Git ignore rules
-├── LICENSE                           # MIT License
-├── README.md                         # Main documentation (Turkish)
-├── README_ACADEMIC.md                # Academic documentation (Turkish)
-├── CONTRIBUTING.md                   # Contribution guidelines
-└── CHANGELOG.md                      # Version history
+├── app_fast.py                       # Ana uygulama giriş noktası
+├── requirements.txt                  # Python bağımlılıkları
+├── .gitignore                        # Git ignore kuralları
+├── LICENSE                           # MIT Lisansı
+├── README.md                         # Ana dokümantasyon (Türkçe)
+├── README_ACADEMIC.md                # Akademik dokümantasyon (Türkçe)
+├── CONTRIBUTING.md                   # Katkı rehberi
+└── CHANGELOG.md                      # Versiyon geçmişi
 ```
 
-## 📦 Module Organization
+## 📦 Modül Organizasyonu
 
-### Core Modules (`src/core/`)
-**Purpose**: Core fall detection algorithms
-- `fall_detector.py`: Main fall detection logic
-  - Multi-criteria analysis
-  - Confidence scoring
-  - History tracking
+### Core Modülleri (`src/core/`)
+**Amaç**: Çekirdek düşme tespit algoritmaları
+- `fall_detector.py`: Ana düşme tespit mantığı
+  - Çok kriterli analiz
+  - Güven skoru hesaplama
+  - Geçmiş takibi
 
-### Models (`src/models/`)
-**Purpose**: Machine learning model integrations
-- `pose_estimator.py`: MediaPipe wrapper
-  - Single-person pose detection
-  - 35+ FPS performance
-  - 33 body landmarks
+### Modeller (`src/models/`)
+**Amaç**: Makine öğrenimi model entegrasyonları
+- `pose_estimator.py`: MediaPipe sarmalayıcısı
+  - Tek kişi pose tespiti
+  - 35+ FPS performans
+  - 33 vücut landmark'ı
 
-- `multi_person_detector.py`: YOLOv8 wrapper
-  - Multi-person tracking
-  - 20+ FPS performance
-  - Bounding box detection
+- `multi_person_detector.py`: YOLOv8 sarmalayıcısı
+  - Çoklu kişi takibi
+  - 20+ FPS performans
+  - Bounding box tespiti
 
-### Utilities (`src/utils/`)
-**Purpose**: Helper functions and utilities
-- `error_handler.py`: Centralized error handling
-  - Logging system
-  - Error recovery
-  - User-friendly messages
+### Yardımcılar (`src/utils/`)
+**Amaç**: Yardımcı fonksiyonlar ve araçlar
+- `error_handler.py`: Merkezi hata işleme
+  - Loglama sistemi
+  - Hata kurtarma
+  - Kullanıcı dostu mesajlar
 
-- `video_processor.py`: Video processing
-  - Frame validation
-  - Quality checks
-  - Error recovery
+- `video_processor.py`: Video işleme
+  - Kare doğrulama
+  - Kalite kontrolleri
+  - Hata kurtarma
 
-- `video_url_handler.py`: URL video support
-  - YouTube/URL processing
-  - Stream handling
+- `video_url_handler.py`: URL video desteği
+  - YouTube/URL işleme
+  - Akış yönetimi
 
 ### UI (`src/ui/`)
-**Purpose**: User interface components
-- `streamlit_app.py`: Web interface
-  - Real-time display
-  - Controls and settings
-  - Statistics dashboard
+**Amaç**: Kullanıcı arayüzü bileşenleri
+- `streamlit_app.py`: Web arayüzü
+  - Gerçek zamanlı görüntüleme
+  - Kontroller ve ayarlar
+  - İstatistik paneli
 
-## 🔧 Configuration Management
+## 🔧 Yapılandırma Yönetimi
 
-### Configuration Files
-- `default_config.yaml`: Development settings
-- `production_config.yaml`: Production settings
+### Yapılandırma Dosyaları
+- `default_config.yaml`: Geliştirme ayarları
+- `production_config.yaml`: Production ayarları
 
-### Configuration Structure
+### Yapılandırma Yapısı
 ```yaml
 detection:
   angle_threshold: 60.0
@@ -142,34 +142,34 @@ logging:
   max_files: 30
 ```
 
-## 🧪 Testing Structure
+## 🧪 Test Yapısı
 
-### Unit Tests (`tests/`)
-- **test_fall_detector.py**: Core algorithm tests
-  - Angle calculation
-  - Aspect ratio
-  - Fall detection logic
+### Birim Testleri (`tests/`)
+- **test_fall_detector.py**: Çekirdek algoritma testleri
+  - Açı hesaplama
+  - En-boy oranı
+  - Düşme tespit mantığı
   
-- **test_pose_estimator.py**: Model integration tests
-  - MediaPipe functionality
-  - YOLOv8 functionality
-  - Error handling
+- **test_pose_estimator.py**: Model entegrasyon testleri
+  - MediaPipe fonksiyonelliği
+  - YOLOv8 fonksiyonelliği
+  - Hata işleme
 
-### Benchmarks (`benchmarks/`)
-- **run_benchmarks.py**: Performance benchmarking
-  - Accuracy metrics
-  - Speed benchmarks
-  - Edge case testing
+### Benchmark'lar (`benchmarks/`)
+- **run_benchmarks.py**: Performans benchmark'ı
+  - Doğruluk metrikleri
+  - Hız benchmark'ları
+  - Kenar durum testleri
 
-## 📊 Output Structure
+## 📊 Çıktı Yapısı
 
-### Logs (`logs/`)
+### Loglar (`logs/`)
 ```
 logs/
 └── fall_detection_20251217.log
 ```
 
-### Results (`examples/results/`)
+### Sonuçlar (`examples/results/`)
 ```
 results/
 ├── benchmark_results.json
@@ -177,65 +177,65 @@ results/
 └── performance_graph.png
 ```
 
-## 🚀 Entry Points
+## 🚀 Giriş Noktaları
 
-### Main Application
+### Ana Uygulama
 ```bash
 streamlit run app_fast.py
 ```
 
-### Tests
+### Testler
 ```bash
 python -m pytest tests/ -v
 ```
 
-### Benchmarks
+### Benchmark'lar
 ```bash
 python benchmarks/run_benchmarks.py
 ```
 
-## 🔄 Data Flow
+## 🔄 Veri Akışı
 
 ```
-User Input → Video Source
+Kullanıcı Girdisi → Video Kaynağı
     ↓
-Video Processor (validation, error handling)
+Video Processor (doğrulama, hata işleme)
     ↓
-Pose Detection (MediaPipe/YOLOv8)
+Pose Tespiti (MediaPipe/YOLOv8)
     ↓
-Fall Detector (multi-criteria analysis)
+Düşme Dedektörü (çok kriterli analiz)
     ↓
-UI Display + Logging
+UI Gösterimi + Loglama
 ```
 
-## 📝 File Naming Conventions
+## 📝 Dosya İsimlendirme Kuralları
 
-- **Modules**: `snake_case.py`
-- **Classes**: `PascalCase`
-- **Functions**: `snake_case()`
-- **Constants**: `UPPER_SNAKE_CASE`
-- **Tests**: `test_*.py`
-- **Configs**: `*_config.yaml`
+- **Modüller**: `snake_case.py`
+- **Sınıflar**: `PascalCase`
+- **Fonksiyonlar**: `snake_case()`
+- **Sabitler**: `UPPER_SNAKE_CASE`
+- **Testler**: `test_*.py`
+- **Configler**: `*_config.yaml`
 
-## 🎯 Best Practices
+## 🎯 En İyi Uygulamalar
 
-1. **Modularity**: Each file has a single responsibility
-2. **Error Handling**: Comprehensive try-catch blocks
-3. **Logging**: All important events logged
-4. **Testing**: Unit tests for all core functions
-5. **Documentation**: Docstrings for all public functions
-6. **Type Hints**: Type annotations where applicable
+1. **Modülerlik**: Her dosya tek bir sorumluluğa sahip olmalı
+2. **Hata İşleme**: Kapsamlı try-except blokları
+3. **Loglama**: Önemli tüm olaylar loglanmalı
+4. **Testler**: Çekirdek fonksiyonlar için birim testleri
+5. **Dokümantasyon**: Tüm public fonksiyonlar için docstring
+6. **Type Hint'ler**: Mümkün olduğunca tip ipuçları kullanılmalı
 
-## 🔐 Security
+## 🔐 Güvenlik
 
-- Sensitive data not committed (`.gitignore`)
-- Logs excluded from repository
-- Configuration files validated
-- Input sanitization implemented
+- Hassas veriler commit edilmiyor (`.gitignore`)
+- Log dosyaları repository'ye dahil edilmiyor
+- Yapılandırma dosyaları doğrulanıyor
+- Giriş verileri sanitize ediliyor
 
-## 📚 Related Documentation
+## 📚 İlgili Dokümanlar
 
-- [README.md](../README.md) - Main documentation
-- [README_ACADEMIC.md](../README_ACADEMIC.md) - Academic details
-- [CONTRIBUTING.md](../CONTRIBUTING.md) - How to contribute
-- [API.md](API.md) - API documentation
+- [README.md](../README.md) - Ana dokümantasyon
+- [README_ACADEMIC.md](../README_ACADEMIC.md) - Akademik detaylar
+- [CONTRIBUTING.md](../CONTRIBUTING.md) - Nasıl katkı yapılır
+- [API.md](API.md) - API dokümantasyonu

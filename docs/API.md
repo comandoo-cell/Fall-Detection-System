@@ -1,10 +1,10 @@
-# API Documentation
+# API Dokümantasyonu
 
-## Core Modules API Reference
+## Çekirdek Modüller API Referansı
 
-### FallDetector Class
+### FallDetector Sınıfı
 
-#### Constructor
+#### Kurucu (Constructor)
 ```python
 FallDetector(
     angle_threshold: float = 60.0,
@@ -12,11 +12,11 @@ FallDetector(
 )
 ```
 
-**Parameters:**
-- `angle_threshold`: Body angle threshold for fall detection (degrees)
-- `history_size`: Number of frames to keep in history
+**Parametreler:**
+- `angle_threshold`: Düşme tespiti için vücut açısı eşiği (derece)
+- `history_size`: Geçmişte tutulacak kare sayısı
 
-#### Methods
+#### Metotlar
 
 ##### detect_fall()
 ```python
@@ -25,20 +25,20 @@ def detect_fall(
 ) -> bool
 ```
 
-Detect fall from pose keypoints.
+Anahtar noktalardan düşme tespiti yapar.
 
-**Parameters:**
-- `keypoints`: Dictionary of body landmarks with (x, y) coordinates
+**Parametreler:**
+- `keypoints`: Vücut landmark'larının (x, y) koordinatlarını içeren sözlük
 
-**Returns:**
-- `bool`: True if fall detected, False otherwise
+**Dönüş:**
+- `bool`: Düşme tespit edildiyse `True`, edilmediyse `False`
 
-**Example:**
+**Örnek:**
 ```python
 detector = FallDetector()
 is_fall = detector.detect_fall(keypoints)
 if is_fall:
-    print("Fall detected!")
+    print("Dusme tespit edildi!")
 ```
 
 ##### calculate_body_angle()
@@ -48,24 +48,24 @@ def calculate_body_angle(
 ) -> Optional[float]
 ```
 
-Calculate body tilt angle.
+Vücut eğim açısını hesaplar.
 
-**Returns:**
-- `float`: Angle in degrees (0-90)
-- `None`: If insufficient keypoints
+**Dönüş:**
+- `float`: Derece cinsinden açı (0-90)
+- `None`: Yeterli anahtar nokta yoksa
 
 ---
 
-### PoseEstimator Class
+### PoseEstimator Sınıfı
 
-#### Constructor
+#### Kurucu (Constructor)
 ```python
 PoseEstimator()
 ```
 
-Initialize MediaPipe pose estimator.
+MediaPipe tabanlı pose (duruş) tahmincisini başlatır.
 
-#### Methods
+#### Metotlar
 
 ##### process_frame()
 ```python
@@ -74,16 +74,16 @@ def process_frame(
 ) -> Optional[Dict[str, Tuple[int, int]]]
 ```
 
-Process frame and extract pose landmarks.
+Bir kareyi işler ve pose landmark'larını çıkarır.
 
-**Parameters:**
-- `frame`: RGB/BGR image (numpy array)
+**Parametreler:**
+- `frame`: RGB/BGR görüntü (numpy array)
 
-**Returns:**
-- `Dict`: Landmark dictionary with body parts
-- `None`: If no person detected
+**Dönüş:**
+- `Dict`: Vücut parçalarını içeren landmark sözlüğü
+- `None`: Eğer kişi tespit edilmezse
 
-**Example:**
+**Örnek:**
 ```python
 estimator = PoseEstimator()
 landmarks = estimator.process_frame(frame)
@@ -91,19 +91,19 @@ landmarks = estimator.process_frame(frame)
 
 ---
 
-### MultiPersonDetector Class
+### MultiPersonDetector Sınıfı
 
-#### Constructor
+#### Kurucu (Constructor)
 ```python
 MultiPersonDetector(model_path: str = "yolov8n-pose.pt")
 ```
 
-Initialize YOLOv8 multi-person detector.
+YOLOv8 tabanlı çoklu kişi pose dedektörünü başlatır.
 
-**Parameters:**
-- `model_path`: Path to YOLOv8 model file
+**Parametreler:**
+- `model_path`: YOLOv8 model dosyasının yolu
 
-#### Methods
+#### Metotlar
 
 ##### detect_people()
 ```python
@@ -112,110 +112,41 @@ def detect_people(
 ) -> List[Tuple[int, Dict[str, Tuple[int, int]]]]
 ```
 
-Detect multiple people in frame.
+Bir karedeki birden fazla kişiyi tespit eder.
 
-**Returns:**
-- `List`: List of (person_id, landmarks) tuples
+**Dönüş:**
+- `List`: Her bir kişi için `(person_id, landmarks)` tuple listesi
 
-**Example:**
-```python
-detector = MultiPersonDetector()
-people = detector.detect_people(frame)
-for person_id, landmarks in people:
-    print(f"Person {person_id} detected")
-```
+## Kullanım Örnekleri
 
----
-
-### ErrorHandler Class
-
-#### Methods
-
-##### log_error()
-```python
-def log_error(
-    message: str,
-    exception: Optional[Exception] = None
-)
-```
-
-Log error with optional exception details.
-
-**Example:**
-```python
-from src.error_handler import error_handler
-
-try:
-    # some operation
-    pass
-except Exception as e:
-    error_handler.log_error("Operation failed", e)
-```
-
----
-
-### VideoProcessor Class
-
-#### Methods
-
-##### validate_frame()
-```python
-def validate_frame(
-    frame: np.ndarray
-) -> Tuple[bool, Optional[str]]
-```
-
-Validate frame quality.
-
-**Returns:**
-- `Tuple[bool, str]`: (is_valid, error_message)
-
-##### process_frame_safe()
-```python
-def process_frame_safe(
-    frame: np.ndarray,
-    processor_func: callable,
-    *args, **kwargs
-) -> Tuple[bool, any, Optional[str]]
-```
-
-Safely process frame with error handling.
-
-**Returns:**
-- `Tuple`: (success, result, error_message)
-
----
-
-## Usage Examples
-
-### Basic Fall Detection
+### Temel Düşme Tespiti
 
 ```python
 from src.pose_estimator import PoseEstimator
 from src.fall_detector import FallDetector
 import cv2
 
-# Initialize
+# Baslat
 pose_est = PoseEstimator()
 fall_det = FallDetector()
 
-# Process video
+# Video isle
 cap = cv2.VideoCapture(0)
 while True:
     ret, frame = cap.read()
     if not ret:
         break
     
-    # Detect pose
+    # Pose tespit et
     landmarks = pose_est.process_frame(frame)
     
-    # Detect fall
+    # Dusme tespit et
     if landmarks:
         is_fall = fall_det.detect_fall(landmarks)
         if is_fall:
-            print("⚠️ FALL DETECTED!")
+            print("⚠️ DUSME TESPIT EDILDI!")
     
-    # Display
+    # Goster
     cv2.imshow('Frame', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
@@ -224,42 +155,42 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
-### Multi-Person Detection
+### Coklu Kisi Tespiti
 
 ```python
 from src.multi_person_detector import MultiPersonDetector
 from src.fall_detector import FallDetector
 
-# Initialize
+# Baslat
 multi_det = MultiPersonDetector()
 fall_det = FallDetector()
 
-# Process frame
+# Kare isle
 people = multi_det.detect_people(frame)
 
 for person_id, landmarks in people:
     is_fall = fall_det.detect_fall(landmarks)
     if is_fall:
-        print(f"Person {person_id} has fallen!")
+        print(f"Kisi {person_id} dustu!")
 ```
 
-### Custom Configuration
+### Ozellestirilmis Ayarlar
 
 ```python
-# High sensitivity for hospitals
-detector = FallDetector(
-    angle_threshold=55.0,  # Lower = more sensitive
-    history_size=15        # Longer history
+# Hastaneler icin yuksek hassasiyet
+| CAM_001 | Camera not accessible | Camera device not found |
+    angle_threshold=55.0,  # Daha dusuk = daha hassas
+    history_size=15        # Daha uzun gecmis
 )
 
-# Low sensitivity to reduce false alarms
-detector = FallDetector(
-    angle_threshold=65.0,  # Higher = less sensitive
-    history_size=5         # Shorter history
+# Yanlis alarmlari azaltmak icin dusuk hassasiyet
+| CAM_002 | Camera read failed | Cannot read frames from camera |
+    angle_threshold=65.0,  # Daha yuksek = daha az hassas
+    history_size=5         # Daha kisa gecmis
 )
 ```
 
-### Error Handling
+### Hata Yönetimi
 
 ```python
 from src.error_handler import error_handler
@@ -267,36 +198,36 @@ from src.video_processor import VideoProcessor
 
 processor = VideoProcessor()
 
-# Check camera availability
+# Kamera uygun mu kontrol et
 is_available, error_msg = processor.check_camera_available(0)
 if not is_available:
     print(error_msg)
-    error_handler.log_error("Camera not available")
+    error_handler.log_error("Kamera kullanilamiyor")
 
-# Validate frame
+# Kareyi dogrula
 is_valid, error_msg = processor.validate_frame(frame)
 if not is_valid:
-    error_handler.log_warning(f"Invalid frame: {error_msg}")
+    error_handler.log_warning(f"Gecersiz kare: {error_msg}")
 
-# Safe processing
+# Guvenli isleme
 success, result, error = processor.process_frame_safe(
     frame,
     pose_estimator.process_frame
 )
 
 if not success:
-    error_handler.log_error(f"Processing failed: {error}")
+    error_handler.log_error(f"Isleme basarisiz: {error}")
 ```
 
 ---
 
-## Configuration API
+## Yapılandırma API'si
 
-### YAML Configuration
+### YAML Yapılandırması
 
 ```yaml
 # config.yaml
-detection:
+| PROC_001 | Invalid frame | Frame validation failed |
   angle_threshold: 60.0
   confidence_threshold: 60.0
   velocity_threshold: 0.5
@@ -314,7 +245,7 @@ logging:
   max_files: 30
 ```
 
-### Loading Configuration
+### Yapılandırmayı Yükleme
 
 ```python
 import yaml
@@ -330,9 +261,9 @@ detector = FallDetector(
 
 ---
 
-## Return Types and Data Structures
+## Dönüş Tipleri ve Veri Yapıları
 
-### Landmarks Dictionary
+### Landmarks Sözlüğü
 ```python
 {
     'nose': (x, y),
@@ -355,12 +286,12 @@ detector = FallDetector(
 }
 ```
 
-### Detection Result
+### Tespit Sonucu
 ```python
 {
     'is_fall': bool,
     'confidence': float,  # 0-100
-    'body_angle': float,  # degrees
+    'body_angle': float,  # derece
     'aspect_ratio': float,
     'timestamp': datetime
 }
@@ -368,13 +299,79 @@ detector = FallDetector(
 
 ---
 
-## Error Codes
+## Hata Kodları
 
-| Code | Message | Description |
-|------|---------|-------------|
-| CAM_001 | Camera not accessible | Camera device not found |
-| CAM_002 | Camera read failed | Cannot read frames from camera |
-| PROC_001 | Invalid frame | Frame validation failed |
+| Kod | Mesaj | Açıklama |
+|------|-------|----------|
+| CAM_001 | Kamera erisilemiyor | Kamera cihazı bulunamadi |
+| CAM_002 | Kamera okuma hatasi | Kameradan kare okunamadi |
+| PROC_001 | Gecersiz kare | Kare dogrulama basarisiz |
+| PROC_002 | Isleme hatasi | Kare islenirken hata olustu |
+| MODEL_001 | Model yuklenemedi | ML modeli yuklenemiyor |
+| MODEL_002 | Inference hatasi | Model calistirilirken hata olustu |
+
+---
+
+## Performans Notları
+
+### Optimizasyon Ipuçları
+
+1. **Mümkünse GPU kullanin**
+```python
+# GPU uygun mu kontrol et
+import torch
+use_gpu = torch.cuda.is_available()
+```
+
+2. **Kare çözünürlüğünü düşürün**
+```python
+frame = cv2.resize(frame, (640, 480))
+```
+
+3. **Kare atlayin (frame skip)**
+```python
+frame_skip = 2  # Her 2. kareyi isle
+if frame_count % frame_skip == 0:
+    process_frame(frame)
+```
+
+4. **Tek kişi için MediaPipe kullanin**
+- YOLOv8'den daha hizlidir
+- 35-40 FPS vs 20-25 FPS
+
+---
+
+## Thread Safety (Çoklu İş Parçacığı Güvenliği)
+
+**Not**: Mevcut implementasyon **thread-safe degildir**.
+
+Çoklu thread'li kullanim icin:
+```python
+import threading
+
+class ThreadSafeFallDetector:
+    def __init__(self):
+        self.detector = FallDetector()
+        self.lock = threading.Lock()
+    
+    def detect_fall(self, keypoints):
+        with self.lock:
+            return self.detector.detect_fall(keypoints)
+```
+
+---
+
+## Sürüm Uyumluluğu
+
+- **Python**: 3.9, 3.10, 3.11
+- **OpenCV**: >= 4.8.0
+- **MediaPipe**: >= 0.10.0
+- **Ultralytics**: >= 8.0.0
+- **Streamlit**: >= 1.28.0
+
+---
+
+Daha fazla örnek için [examples/README.md](../examples/README.md) dosyasına bakabilirsiniz.
 | PROC_002 | Processing error | Error during frame processing |
 | MODEL_001 | Model load failed | Cannot load ML model |
 | MODEL_002 | Inference error | Error during model inference |

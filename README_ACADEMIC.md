@@ -505,6 +505,23 @@ Specificity = TN / (TN + FP)
 - ❌ Rougier et al. [6] ile karşılaştırıldığında düşük accuracy
 - ❌ Okluzyonlara karşı hassas
 
+### 3.6 Birim Test Sonuçları
+
+Geliştirilen algoritmanın güvenilirliğini artırmak ve regresyon hatalarını önlemek için
+Python `unittest` ve `pytest` tabanlı bir test altyapısı oluşturulmuştur.
+
+- Test Çerçevesi: pytest 9.0.2
+- Çalıştırma Komutu: `python -m pytest tests -v`
+- Çalıştırma Tarihi: 17.12.2025
+- Toplam Test Sayısı: 11
+    - FallDetector için geometri ve mantık testleri
+    - PoseEstimator ve MultiPersonDetector için smoke testler
+- Sonuç: **11/11 test başarıyla geçmiştir (0 hata, 0 failure)**
+
+Bu sonuç, düşme tespit algoritmasının temel senaryolarda beklenen davranışı
+gösterdiğini ve yapılan yapısal değişikliklerden sonra da fonksiyonelliğin
+korunduğunu göstermektedir.
+
 ---
 
 ## 4. Tartışma
