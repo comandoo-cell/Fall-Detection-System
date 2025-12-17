@@ -482,7 +482,7 @@ Sorular veya öneriler için:
 - **Email**: ka5898522@gmail.com
 - **GitHub I**: ([https://github.com/comandoo-cell/fall-detection-system/issues](https://github.com/comandoo-cell))
 
-## 🙏 Teşekkürler
+## 🙏 Teşekkürler.
 
 
 ---
