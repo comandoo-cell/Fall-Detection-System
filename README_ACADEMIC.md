@@ -10,7 +10,7 @@
 
 ## Özet (Abstract)
 
-Düşmeler; yaşlı bireyler, hastalar ve endüstriyel ortamlarda çalışan kişiler için en kritik güvenlik risklerinden biridir. Bu çalışma, **insan poz tahmini (pose estimation)** temelli, **hafif, gerçek zamanlı ve çok kriterli** bir düşme tespit sistemi sunmaktadır. Önerilen sistem, **MediaPipe Pose** ve **YOLOv8-Pose** teknolojilerini entegre ederek hem **tek kişi** hem de **çoklu kişi** senaryolarını desteklemektedir. Ağır ve veri yoğun derin öğrenme sınıflandırıcıları yerine, düşme olayları; vücut açısı, en-boy oranı, baş pozisyonu ve zamansal tutarlılığı birleştiren **kural tabanlı çok kriterli bir puanlama mekanizması** ile tespit edilmektedir. Gerçek video senaryoları üzerinde yapılan deneylerde sistemin **%92.5 doğruluk**, **%94.3 recall** ve **40 FPS’e kadar gerçek zamanlı performans** sağladığı gözlemlenmiştir. Bu sonuçlar, sistemin edge cihazlar ve gerçek zamanlı izleme uygulamaları için uygun olduğunu göstermektedir.
+Düşmeler; yaşlı bireyler, hastalar ve endüstriyel ortamlarda çalışan kişiler için en kritik güvenlik risklerinden biridir. Bu çalışma, **insan poz tahmini (pose estimation)** temelli, **hafif, gerçek zamanlı ve çok kriterli** bir düşme tespit sistemi sunmaktadır. Önerilen sistem, **MediaPipe Pose** (tek kişi senaryoları) ve **YOLOv8-Pose** (çoklu kişi senaryoları) teknolojilerini entegre ederek farklı kullanım durumlarını desteklemektedir. Ağır ve veri yoğun derin öğrenme sınıflandırıcıları yerine, düşme olayları; vücut açısı, en-boy oranı, baş pozisyonu ve zamansal tutarlılığı birleştiren **kural tabanlı, eğitim gerektirmeyen (training-free) bir çok kriterli puanlama mekanizması** ile tespit edilmektedir. Manuel olarak kaydedilmiş gerçek video senaryoları üzerinde yapılan sınırlı kapsamlı dahili deneylerde sistemin yaklaşık **%92.5 doğruluk**, **%94.3 recall** ve **40 FPS’e kadar gerçek zamanlı performans** sağladığı gözlemlenmiştir. Bu değerler, yayınlanmamış iç testlere dayanmakta olup resmi bir açık veri seti benchmark'ı değildir.
 
 ---
 
@@ -30,38 +30,10 @@ Bu çalışmada, **düşmeye özel bir model eğitimi gerektirmeyen**, poz taban
 
 Bu çalışmanın temel katkıları şunlardır:
 
-<<<<<<< HEAD
-* Denetimli düşme verisi eğitimi gerektirmeyen, poz tahmini tabanlı gerçek zamanlı bir sistem.
-* Geometrik ve zamansal özellikleri birleştiren çok kriterli bir düşme karar mekanizması.
-* Tek kişi ve çoklu kişi düşme tespitini destekleyen esnek bir mimari.
+* Denetimli düşme verisi eğitimi gerektirmeyen, poz tahmini tabanlı, kural tabanlı (rule-based) gerçek zamanlı bir sistem.
+* Geometrik ve zamansal özellikleri birleştiren, öğrenme gerektirmeyen çok kriterli bir düşme karar mekanizması.
+* Tek kişi (MediaPipe) ve çoklu kişi (YOLOv8-Pose) düşme tespitini destekleyen esnek bir mimari.
 * Streamlit tabanlı arayüze sahip, açık kaynaklı ve yeniden üretilebilir bir uygulama.
-=======
-Bu çalışma, bilgisayarlı görü tabanlı kamera sistemleri kullanarak temassız düşme tespiti yapmayı amaçlamaktadır. Ana katkılarımız:
-
-1. **Çok Kriterli Puanlama Sistemi**: Dört farklı geometrik metriğin (vücut açısı, en-boy oranı, baş pozisyonu, hareket yönü) ağırlıklı kombinasyonu ile yüksek doğruluk
-2. **Hibrit Algoritma Yaklaşımı**: MediaPipe (tek kişi, yüksek hız) ve YOLOv8 (çoklu kişi, yüksek doğruluk) algoritmalarının birlikte kullanımı
-3. **Temporal Doğrulama**: Yanlış pozitif oranını azaltan ardışık kare onay mekanizması
-4. **Gerçek Zamanlı İşleme**: 18-38 FPS hızında düşük gecikmeli tespit
-5. **Modüler Mimari**: Esnek ve genişletilebilir yazılım tasarımı
-
-### 1.3 İlgili Çalışmalar
-
-Düşme tespiti alanında çeşitli yaklaşımlar önerilmiştir:
-
-**Sensör Tabanlı Sistemler**:
-- Zigel et al. [3] ivmeölçer ve jiroskop sensörleri kullanarak %95 doğruluk elde etmiştir
-- Bourke et al. [4] giyilebilir sensör füzyonu ile düşme tespiti gerçekleştirmiştir
-- *Dezavantaj*: Kullanıcı konforunu azaltır, şarj gerektirir
-
-**Akustik/Radar Tabanlı Sistemler**:
-- Liu et al. [5] Doppler radar ile düşme tespiti önermiştir
-- *Dezavantaj*: Pahalı donanım, sınırlı kapsama
-
-**Görüntü Tabanlı Sistemler**:
-- Rougier et al. [6] 3D başın dikey hızı ile %99 doğruluk
-- Vishwakarma et al. [7] CNN tabanlı düşme tespiti
-- *Bu çalışma*: Çok kriterli puanlama ve temporal doğrulama ile geliştirme
->>>>>>> e852b17 (docs: akademik raporda duzeltmeler)
 
 ---
 
@@ -71,9 +43,7 @@ Düşme tespiti alanında çeşitli yaklaşımlar önerilmiştir:
 
 Görüş tabanlı (vision-based) yaklaşımlar daha sonra ortaya çıkmış; arka plan çıkarma, optik akış ve bounding box analizleri gibi yöntemler kullanılmıştır. Güncel çalışmalarda CNN ve LSTM gibi derin öğrenme modelleri ile düşme sınıflandırması yapılmaktadır. Ancak bu yaklaşımlar yüksek hesaplama maliyeti, büyük veri ihtiyacı ve gerçek zamanlı sistemlerde sınırlı uygulanabilirlik gibi sorunlar barındırmaktadır.
 
-<<<<<<< HEAD
-Bu çalışmada önerilen sistem, veri setine bağımlı bir eğitim süreci olmaksızın, poz tabanlı geometrik ve zamansal özellikler kullanarak yüksek doğruluk ve gerçek zamanlı performans sağlamayı hedeflemektedir.
-=======
+Bu çalışmada önerilen sistem, veri setine bağımlı bir eğitim süreci olmaksızın, poz tabanlı geometrik ve zamansal özellikler kullanarak yüksek doğruluk ve gerçek zamanlı performans sağlamayı hedefleyen **eğitim gerektirmeyen (training-free), kural tabanlı** bir yaklaşımdır.
 ```
 ┌─────────────────────────────────────────────────────────┐
 │              Video Giriş Modülü (VGM)                   │
@@ -348,7 +318,7 @@ FALL_CONFIG = {
 2. **Resolution Scaling**: Giriş görüntüsünü 640x480'e yeniden boyutlandırma
 3. **ROI (Region of Interest)**: İlgili bölgeleri önceliklendirme
 4. **Early Stopping**: Düşük güven skorlarında hesaplamayı durdurma
->>>>>>> e852b17 (docs: akademik raporda duzeltmeler)
+ 
 
 ---
 
@@ -361,9 +331,9 @@ FALL_CONFIG = {
 3. Çok kriterli düşme analizi.
 4. Uyarı ve kayıt (loglama) mekanizması.
 
-<<<<<<< HEAD
 Sistem, sahnedeki kişi sayısına bağlı olarak otomatik şekilde uygun poz tahmin modülünü seçebilecek şekilde tasarlanmıştır.
-=======
+Sistem, sahnedeki kişi sayısına bağlı olarak otomatik şekilde uygun poz tahmin modülünü seçebilecek şekilde tasarlanmıştır; tek kişi senaryolarında MediaPipe Pose, çoklu kişi senaryolarında ise YOLOv8-Pose tercih edilmektedir.
+
 **Kaynak**: Kendi toplanan veriler
 **İçerik**:
 - Video sayısı: 60
@@ -405,14 +375,21 @@ iskelet/pose bilgisi üzerinden düşme tespiti analizi için
 kullanılmıştır. Veriler yalnızca araştırma ve eğitim amaçlı
 değerlendirilmiş, üçüncü taraflarla paylaşılmamış ve gerekli olmayan
 ham görüntüler proje süreci tamamlandıktan sonra güvenli şekilde
-silinmesi hedeflenmiştir.
+silinmesi hedeflenmiştir. Sistem, **gözetim (surveillance) amacıyla
+değil**, düşme riskine karşı **destekleyici (assistive) izleme** için
+tasarlanmıştır. Bu sistem, tıbbi tanı koymak veya hukuki sorumluluk
+üstlenmek üzere değil, yalnızca yardımcı karar destek aracı olarak
+kullanılmalıdır.
 
 ### 3.2 Değerlendirme Metrikleri
 
-Sınıflandırma performansı için standart metrikler:
+Sınıflandırma performansı için standart metrikler, bu çalışma
+kapsamında yalnızca **iç (dahili) değerlendirme** amacıyla ve
+sınırlı sayıda manuel kaydedilmiş gerçek dünya videosu üzerinde
+hesaplanmıştır:
 
 ```
-Confusion Matrix:
+Example Confusion Matrix (Internal Evaluation):
 ┌─────────────┬──────────┬──────────┐
 │             │ Pred: 0  │ Pred: 1  │
 ├─────────────┼──────────┼──────────┤
@@ -451,13 +428,14 @@ Specificity = TN / (TN + FP)
 
 #### 3.3.2 Hesaplama Performansı
 
-**Test Ortamı**:
+**Test Ortamı (Dahili Değerlendirme)**:
 - CPU: Intel Core i7-10750H (6 core, 12 thread, 2.6-5.0 GHz)
 - GPU: NVIDIA GeForce GTX 1650 (4GB GDDR6, 1024 CUDA cores)
 - RAM: 16 GB DDR4-2933
 - İşletim Sistemi: Windows 11 Pro
 
-**Sonuçlar**:
+**Sonuçlar (Manuel kaydedilmiş gerçek dünya videoları üzerinde, sınırlı
+bir senaryo seti ile yapılan dahili testler)**:
 
 | Metrik | MediaPipe | YOLOv8 Nano |
 |--------|-----------|-------------|
@@ -546,8 +524,10 @@ Specificity = TN / (TN + FP)
 
 ### 3.6 Birim Test Sonuçları
 
-Geliştirilen algoritmanın güvenilirliğini artırmak ve regresyon hatalarını önlemek için
-Python `unittest` ve `pytest` tabanlı bir test altyapısı oluşturulmuştur.
+Geliştirilen algoritmanın güvenilirliğini artırmak ve regresyon hatalarını
+erken yakalamak için Python `unittest` ve `pytest` tabanlı bir test altyapısı
+oluşturulmuştur. Bu testler de dahili (internal) doğrulama amaçlıdır ve resmi
+bir dış değerlendirme yerine, geliştirici testleri olarak düşünülmelidir.
 
 - Test Çerçevesi: pytest 9.0.2
 - Çalıştırma Komutu: `python -m pytest tests -v`
@@ -559,18 +539,22 @@ Python `unittest` ve `pytest` tabanlı bir test altyapısı oluşturulmuştur.
 
 Bu sonuç, düşme tespit algoritmasının temel senaryolarda beklenen davranışı
 gösterdiğini ve yapılan yapısal değişikliklerden sonra da fonksiyonelliğin
-korunduğunu göstermektedir.
->>>>>>> e852b17 (docs: akademik raporda duzeltmeler)
+korunduğunu göstermektedir; ancak bu testler, gerçek dünyadaki tüm olası
+senaryoların eksiksiz kapsamını garanti etmez.
 
 ---
 
 ## 4. Sonuç
 
-Bu çalışmada, yüksek doğruluk sağlayan ve düşmeye özel bir derin öğrenme modeli eğitimi gerektirmeyen pratik bir düşme tespit sistemi sunulmuştur. Modüler yazılım yapısı, gerçek zamanlı çalışma kabiliyeti ve açık kaynak olması sayesinde sistem; akademik çalışmalar, sağlık izleme uygulamaları ve endüstriyel güvenlik senaryolarında kullanılmaya uygundur.
+Bu çalışmada, yüksek doğruluk sağlamayı hedefleyen ve düşmeye özel bir derin
+öğrenme modeli eğitimi gerektirmeyen, **kural tabanlı ve eğitim gerektirmeyen
+(training-free)** pratik bir düşme tespit sistemi sunulmuştur. Modüler yazılım
+yapısı, gerçek zamanlı çalışma kabiliyeti ve açık kaynak olması sayesinde
+sistem; akademik çalışmalar, sağlık izleme uygulamaları ve endüstriyel
+güvenlik senaryolarında **yardımcı (assistive) bir izleme bileşeni** olarak
+kullanılmaya uygundur. Bu sistem, tek başına tıbbi tanı aracı veya hukuki
+sorumluluk üstlenen bir sistem olarak tasarlanmamıştır.
 
-<<<<<<< HEAD
-Gelecek çalışmalarda, zamansal öğrenme modellerinin entegrasyonu, örtülme (occlusion) durumlarına karşı dayanıklılığın artırılması ve kamuya açık veri setleri üzerinde daha geniş kapsamlı deneyler yapılması hedeflenmektedir.
-=======
 #### 4.1.1 Algoritma Seçimi
 
 **MediaPipe**:
@@ -881,4 +865,3 @@ Bu projeye katkıda bulunan herkese teşekkür ederiz.
 [![DOI](https://img.shields.io/badge/DOI-Beklemede-orange)]()
 
 </div>
->>>>>>> e852b17 (docs: akademik raporda duzeltmeler)

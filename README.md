@@ -36,7 +36,7 @@
 
 ## 🎯 Genel Bakış
 
-Bu proje, **gerçek zamanlı düşme tespiti** için geliştirilmiş **yapay zeka tabanlı** bir görüntü işleme sistemidir. MediaPipe ve YOLOv8 pose estimation teknolojilerini kullanarak video akışlarından insan vücudunun **33 anahtar noktasını** tespit eder ve **çok kriterli puanlama sistemi** ile düşme olaylarını **%92.5 doğrulukla** belirler.
+Bu proje, **gerçek zamanlı düşme tespiti** için geliştirilmiş, **poz tahmini (pose estimation)** tabanlı bir görüntü işleme sistemidir. MediaPipe ve YOLOv8 pose estimation teknolojilerini kullanarak video akışlarından insan vücudunun **anahtar noktalarını** tespit eder ve **kural tabanlı, eğitim gerektirmeyen (training-free) çok kriterli bir puanlama sistemi** ile düşme olaylarını belirler. Aşağıda verilen performans değerleri, yalnızca sınırlı sayıda manuel olarak kaydedilmiş gerçek dünya videosu üzerinde yapılan **dahili (internal) testlere** dayanmaktadır.
 
 ### 🎯 Kullanım Alanları
 
@@ -48,7 +48,7 @@ Bu proje, **gerçek zamanlı düşme tespiti** için geliştirilmiş **yapay zek
 
 ### ✨ Neden Bu Sistem?
 
-- ✅ **Yüksek Doğruluk**: %92.5 genel doğruluk, %94.3 recall oranı
+- ✅ **Yüksek Doğruluk (Dahili Testler)**: Sınırlı dahili senaryolarda yüksek doğruluk ve recall gözlemlenmiştir
 - ⚡ **Gerçek Zamanlı**: 35-40 FPS (MediaPipe), 20-25 FPS (YOLOv8)
 - 👥 **Çoklu Kişi**: Aynı anda birden fazla kişi izleme
 - 🎥 **Esnek Giriş**: Webcam, video, RTSP, YouTube desteği
@@ -147,28 +147,31 @@ Bu proje, **gerçek zamanlı düşme tespiti** için geliştirilmiş **yapay zek
 
 ## 📈 Performans Metrikleri
 
-### 🎯 Doğruluk Metrikleri
+Bu bölümdeki metrikler, sınırlı sayıda manuel kaydedilmiş gerçek dünya
+videosu üzerinde yapılan **dahili (internal) değerlendirmelere** aittir ve
+resmi bir açık veri seti benchmark'ı değildir. Rakamlar, sistem ayarları ve
+senaryolara göre değişebilir.
+
+### 🎯 Doğruluk Metrikleri (Örnek Dahili Değerlendirme)
 
 <div align="center">
 
-| Metrik | Değer | Açıklama |
-|--------|-------|----------|
-| **Accuracy** | **92.5%** | Genel doğruluk oranı |
-| **Precision** | **91.2%** | Pozitif tahminlerin doğruluğu |
-| **Recall** | **94.3%** | Gerçek pozitifleri yakalama oranı |
-| **F1-Score** | **92.7%** | Precision ve Recall'un harmonik ortalaması |
+| Metrik | Değer (Örnek) | Açıklama |
+|--------|---------------|----------|
+| **Accuracy** | ~92–93% | Genel doğruluk oranı |
+| **Precision** | ~91% | Pozitif tahminlerin doğruluğu |
+| **Recall** | ~94% | Gerçek pozitifleri yakalama oranı |
+| **F1-Score** | ~92–93% | Precision ve Recall'un harmonik ortalaması |
 
 </div>
 
-### 📊 Confusion Matrix
+### 📊 Örnek Confusion Matrix (Internal Evaluation)
 
 ```
-                    Predicted
-                  Fall    Normal
-Actual  Fall      47      3        (Recall: 94.0%)
-        Normal    9       91       (Specificity: 91.0%)
-                  
-        (Precision: 83.9%) (92.7%)
+            Predicted
+          Fall    Normal
+Actual  Fall      47      3
+    Normal    9       91
 ```
 
 ### ⚡ İşleme Hızı
