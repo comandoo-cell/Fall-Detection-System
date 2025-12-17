@@ -27,10 +27,9 @@
 - [Kullanım Örnekleri](#-kullanım-örnekleri)
 - [Sistem Mimarisi](#-sistem-mimarisi)
 - [Yapılandırma](#-yapılandırma)
-- [Test ve Benchmark](#-test-ve-benchmark)
+- [Testler](#-testler)
 - [Dokümantasyon](#-dokümantasyon)
 - [Sorun Giderme](#-sorun-giderme)
-- [Katkıda Bulunma](#-katkıda-bulunma)
 - [Lisans](#-lisans)
 
 ---
@@ -54,9 +53,8 @@ Bu proje, **gerçek zamanlı düşme tespiti** için geliştirilmiş **yapay zek
 - 👥 **Çoklu Kişi**: Aynı anda birden fazla kişi izleme
 - 🎥 **Esnek Giriş**: Webcam, video, RTSP, YouTube desteği
 - 🔧 **Kolay Kurulum**: Pip ile tek komutla kurulum
-- 📊 **Detaylı Metrikler**: Confusion matrix, performans grafikleri
-- 🧪 **Test Edilmiş**: 16+ unit test, comprehensive benchmarks
-- 🤖 **CI/CD**: Otomatik testler ve kod kalite kontrolleri
+- 📊 **Metrikler**: Confusion matrix ve temel performans ölçümleri
+- 🧪 **Test Edilmiş**: Birim testler ile doğrulama
 
 ---
 
@@ -183,14 +181,7 @@ Actual  Fall      47      3        (Recall: 94.0%)
 
 ### 📋 Senaryo Bazlı Performans
 
-| Senaryo | Doğruluk | Precision | Recall | F1-Score |
-|---------|----------|-----------|--------|----------|
-| 🧍 **Ayakta** | 95.8% | 94.2% | 97.5% | 95.8% |
-| 💺 **Oturma** | 89.2% | 87.5% | 91.3% | 89.4% |
-| 🧎 **Çömelme** | 87.5% | 85.8% | 89.4% | 87.6% |
-| 🤸 **Düşme** | **94.3%** | **91.8%** | **97.2%** | **94.4%** |
-
-> **Not**: Detaylı performans analizi için [examples/RESULTS.md](examples/RESULTS.md) dosyasına bakın.
+Gerçek veri üzerinde yapılan deneylerde sistem; ayakta, oturma, çömelme ve düşme senaryolarında yüksek doğrulukla çalışacak şekilde ayarlanmıştır. Detaylı deney raporu için README_ACADEMIC.md dosyasına bakabilirsiniz.
 
 ---
 
@@ -328,31 +319,23 @@ while True:
             print(f"⚠️ Kişi {person_id} düştü!")
 ```
 
-> **Daha fazla örnek için**: [examples/usage_examples/](examples/usage_examples/) klasörüne bakın.
-
 ---
 
 ## 📚 Kullanım Örnekleri
 
-### Örnek Kodlar
+Bu projenin ana kullanım yolu Streamlit arayüzüdür:
 
 ```bash
-# Temel kullanım
-python examples/usage_examples/basic_detection.py
-
-# Özel eşiklerle
-python examples/usage_examples/custom_threshold.py
-
-# Çoklu kişi
-python examples/usage_examples/multi_person.py
+streamlit run app_fast.py
 ```
 
-### Detaylı Dokümantasyon
+- Web arayüzünden kamera, video dosyası veya URL (YouTube / IP kamera) seçerek gerçek zamanlı düşme tespitini gözlemleyebilirsiniz.
+- Demo için README içindeki YouTube tanıtım videosu bağlantısına bakabilirsiniz.
 
-- [📖 Kullanım Örnekleri](examples/README.md) - Detaylı kod örnekleri
-- [📊 Beklenen Sonuçlar](examples/RESULTS.md) - Performans metrikleri ve analiz
-- [🔧 API Dokümantasyonu](docs/API.md) - Tüm fonksiyon ve sınıflar
-- [🏗️ Proje Yapısı](docs/PROJECT_STRUCTURE.md) - Klasör yapısı ve organizasyon
+Detaylı teknik API ve proje yapısı için:
+
+- [🔧 API Dokümantasyonu](docs/API.md)
+- [🏗️ Proje Yapısı](docs/PROJECT_STRUCTURE.md)
 
 ---
 
@@ -387,17 +370,17 @@ python examples/usage_examples/multi_person.py
 ### 🔧 Modül Yapısı
 
 ```
+app_fast.py        # Ana Streamlit arayüzü
+
 src/
 ├── core/           # Ana algoritma
 │   └── fall_detector.py
 ├── models/         # ML modelleri
 │   ├── pose_estimator.py
 │   └── multi_person_detector.py
-├── utils/          # Yardımcı araçlar
-│   ├── error_handler.py
-│   └── video_processor.py
-└── ui/             # Kullanıcı arayüzü
-    └── streamlit_app.py
+└── utils/          # Yardımcı araçlar
+    ├── error_handler.py
+    └── video_processor.py
 ```
 
 ---
@@ -441,7 +424,7 @@ detector = FallDetector(
 
 ---
 
-## 🧪 Test ve Benchmark
+## 🧪 Testler
 
 ### Unit Testler
 
@@ -456,22 +439,7 @@ python -m pytest tests/ --cov=src --cov-report=html
 python -m pytest tests/test_fall_detector.py -v
 ```
 
-### Benchmark
-
-```bash
-# Performans testleri
-python benchmarks/run_benchmarks.py
-
-# Sonuçları görüntüle
-cat benchmarks/benchmark_results.json
-```
-
-### Test İstatistikleri
-
-- ✅ **16+ Unit Tests**: Tüm core fonksiyonlar test edildi
-- ✅ **85%+ Code Coverage**: Yüksek kod kapsama oranı
-- ✅ **150 Test Cases**: Synthetic data ile benchmark
-- ✅ **Edge Case Testing**: Sınır durumları test edildi
+Bu projede düşme tespit algoritması ve pose modellerinin temel davranışı için unit testler bulunmaktadır. Test sonuçlarının özeti README_ACADEMIC.md içinde "Birim Test Sonuçları" bölümünde açıklanmıştır.
 
 ---
 
@@ -481,14 +449,8 @@ cat benchmarks/benchmark_results.json
 
 - [📘 README (TR)](README.md) - Ana dokümantasyon (Türkçe)
 - [📗 README_ACADEMIC](README_ACADEMIC.md) - Akademik detaylar (Türkçe)
-- [📙 API Documentation](docs/API.md) - API referansı
-- [📕 Project Structure](docs/PROJECT_STRUCTURE.md) - Proje yapısı
-
-### Katkıda Bulunma
-
-- [🤝 CONTRIBUTING](CONTRIBUTING.md) - Katkı rehberi
-- [📋 Code of Conduct](CODE_OF_CONDUCT.md) - Davranış kuralları
-- [🐛 Issue Templates](.github/ISSUE_TEMPLATE/) - Hata raporlama
+- [📙 API Dokümantasyonu](docs/API.md) - API referansı
+- [📕 Proje Yapısı](docs/PROJECT_STRUCTURE.md) - Klasör yapısı
 
 ---
 
@@ -542,40 +504,6 @@ grep ERROR logs/fall_detection_*.log
 ```
 
 ---
-
-## 🤝 Katkıda Bulunma
-
-Katkılarınızı bekliyoruz! 🎉
-
-### Nasıl Katkıda Bulunabilirsiniz?
-
-1. **Fork** edin
-2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Commit edin (`git commit -m 'feat: Add amazing feature'`)
-4. Push edin (`git push origin feature/amazing-feature`)
-5. Pull Request açın
-
-### Katkı Alanları
-
-- 🐛 **Bug Fixes**: Hata düzeltmeleri
-- ✨ **New Features**: Yeni özellikler
-- 📚 **Documentation**: Dokümantasyon iyileştirmeleri
-- 🧪 **Tests**: Test coverage artırma
-- 🎨 **UI/UX**: Arayüz iyileştirmeleri
-
-Detaylar için [CONTRIBUTING.md](CONTRIBUTING.md) dosyasına bakın.
-
----
-
-## 📊 Proje İstatistikleri
-
-- ⭐ **Stars**: 0 (Yeni proje!)
-- 🍴 **Forks**: 0
-- 📝 **Commits**: 100+
-- 📂 **Files**: 50+
-- 📄 **Lines of Code**: 5000+
-- 🧪 **Tests**: 16+
-- 📦 **Dependencies**: 10+
 
 ---
 

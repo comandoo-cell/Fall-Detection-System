@@ -126,27 +126,27 @@ from src.pose_estimator import PoseEstimator
 from src.fall_detector import FallDetector
 import cv2
 
-# Baslat
+
 pose_est = PoseEstimator()
 fall_det = FallDetector()
 
-# Video isle
+
 cap = cv2.VideoCapture(0)
 while True:
     ret, frame = cap.read()
     if not ret:
         break
     
-    # Pose tespit et
+    
     landmarks = pose_est.process_frame(frame)
     
-    # Dusme tespit et
+    
     if landmarks:
         is_fall = fall_det.detect_fall(landmarks)
         if is_fall:
             print("⚠️ DUSME TESPIT EDILDI!")
     
-    # Goster
+    
     cv2.imshow('Frame', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
@@ -161,11 +161,11 @@ cv2.destroyAllWindows()
 from src.multi_person_detector import MultiPersonDetector
 from src.fall_detector import FallDetector
 
-# Baslat
+
 multi_det = MultiPersonDetector()
 fall_det = FallDetector()
 
-# Kare isle
+
 people = multi_det.detect_people(frame)
 
 for person_id, landmarks in people:
@@ -177,16 +177,16 @@ for person_id, landmarks in people:
 ### Ozellestirilmis Ayarlar
 
 ```python
-# Hastaneler icin yuksek hassasiyet
+
 | CAM_001 | Camera not accessible | Camera device not found |
-    angle_threshold=55.0,  # Daha dusuk = daha hassas
-    history_size=15        # Daha uzun gecmis
+    angle_threshold=55.0,  
+    history_size=15        
 )
 
-# Yanlis alarmlari azaltmak icin dusuk hassasiyet
+
 | CAM_002 | Camera read failed | Cannot read frames from camera |
-    angle_threshold=65.0,  # Daha yuksek = daha az hassas
-    history_size=5         # Daha kisa gecmis
+    angle_threshold=65.0,  
+    history_size=5         
 )
 ```
 
@@ -198,18 +198,18 @@ from src.video_processor import VideoProcessor
 
 processor = VideoProcessor()
 
-# Kamera uygun mu kontrol et
+
 is_available, error_msg = processor.check_camera_available(0)
 if not is_available:
     print(error_msg)
     error_handler.log_error("Kamera kullanilamiyor")
 
-# Kareyi dogrula
+
 is_valid, error_msg = processor.validate_frame(frame)
 if not is_valid:
     error_handler.log_warning(f"Gecersiz kare: {error_msg}")
 
-# Guvenli isleme
+
 success, result, error = processor.process_frame_safe(
     frame,
     pose_estimator.process_frame
@@ -226,7 +226,7 @@ if not success:
 ### YAML Yapılandırması
 
 ```yaml
-# config.yaml
+
 | PROC_001 | Invalid frame | Frame validation failed |
   angle_threshold: 60.0
   confidence_threshold: 60.0
@@ -318,7 +318,7 @@ detector = FallDetector(
 
 1. **Mümkünse GPU kullanin**
 ```python
-# GPU uygun mu kontrol et
+
 import torch
 use_gpu = torch.cuda.is_available()
 ```
@@ -330,7 +330,7 @@ frame = cv2.resize(frame, (640, 480))
 
 3. **Kare atlayin (frame skip)**
 ```python
-frame_skip = 2  # Her 2. kareyi isle
+frame_skip = 2  
 if frame_count % frame_skip == 0:
     process_frame(frame)
 ```
@@ -371,7 +371,6 @@ class ThreadSafeFallDetector:
 
 ---
 
-Daha fazla örnek için [examples/README.md](../examples/README.md) dosyasına bakabilirsiniz.
 | PROC_002 | Processing error | Error during frame processing |
 | MODEL_001 | Model load failed | Cannot load ML model |
 | MODEL_002 | Inference error | Error during model inference |
@@ -384,7 +383,7 @@ Daha fazla örnek için [examples/README.md](../examples/README.md) dosyasına b
 
 1. **Use GPU when available**
 ```python
-# Check GPU availability
+
 import torch
 use_gpu = torch.cuda.is_available()
 ```
@@ -396,7 +395,7 @@ frame = cv2.resize(frame, (640, 480))
 
 3. **Skip frames**
 ```python
-frame_skip = 2  # Process every 2nd frame
+frame_skip = 2  
 if frame_count % frame_skip == 0:
     process_frame(frame)
 ```
@@ -437,4 +436,4 @@ class ThreadSafeFallDetector:
 
 ---
 
-For more examples, see [examples/README.md](../examples/README.md)
+Ek örnek kullanım senaryoları için README.md ve README_ACADEMIC.md dosyalarına bakabilirsiniz.

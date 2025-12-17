@@ -3,12 +3,7 @@
 ## 📁 Tam Dizin Yapısı
 
 ```
-all-detection-system/
-│
-├── .github/                          # GitHub ayarları
-│   └── workflows/                    # CI/CD pipeline'ları
-│       ├── tests.yml                 # Otomatik testler
-│       └── code_quality.yml          # Kod kalitesi kontrolleri
+Fall-Detection-System/
 │
 ├── src/                              # Kaynak kod
 │   ├── core/                         # Çekirdek düşme tespit algoritmaları
@@ -21,38 +16,16 @@ all-detection-system/
 │   │   └── multi_person_detector.py  # YOLOv8 çoklu kişi tespiti
 │   │
 │   ├── utils/                        # Yardımcı modüller
-│   │   ├── __init__.py
 │   │   ├── error_handler.py          # Hata işleme ve loglama
-│   │   ├── video_processor.py        # Video işleme yardımcıları
-│   │   └── video_url_handler.py      # URL video işleme
-│   │
-│   └── ui/                           # Kullanıcı arayüzü
-│       ├── __init__.py
-│       └── streamlit_app.py          # Streamlit web arayüzü
+│   │   └── video_processor.py        # Video işleme yardımcıları
 │
 ├── tests/                            # Birim testleri
-│   ├── __init__.py
 │   ├── test_fall_detector.py         # Düşme tespit testi
-│   ├── test_pose_estimator.py        # Pose tespit testleri
-│   └── test_integration.py           # Entegrasyon testleri
-│
-├── benchmarks/                       # Performans benchmark'ları
-│   ├── run_benchmarks.py             # Benchmark çalıştırıcısı
-│   ├── benchmark_results.json        # Sonuç çıktıları
-│   └── README.md                     # Benchmark dokümantasyonu
-│
-├── examples/                         # Örnekler ve demolar
-│   ├── README.md                     # Örnek dokümantasyonu
-│   ├── RESULTS.md                    # Beklenen sonuçlar
-│   ├── screenshots/                  # Arayüz ekran görüntüleri
-│   ├── results/                      # Örnek test sonuçları
-│   └── usage_examples/               # Kod örnekleri
+│   └── test_pose_estimator.py        # Pose tespit testleri
 │
 ├── docs/                             # Dokümantasyon
 │   ├── API.md                        # API dokümantasyonu
-│   ├── ARCHITECTURE.md               # Sistem mimarisi
-│   ├── DEPLOYMENT.md                 # Dağıtım rehberi
-│   └── FAQ.md                        # Sık sorulan sorular
+│   └── PROJECT_STRUCTURE.md          # Bu doküman
 │
 ├── configs/                          # Yapılandırma dosyaları
 │   ├── default_config.yaml           # Varsayılan yapılandırma
@@ -70,8 +43,7 @@ all-detection-system/
 ├── LICENSE                           # MIT Lisansı
 ├── README.md                         # Ana dokümantasyon (Türkçe)
 ├── README_ACADEMIC.md                # Akademik dokümantasyon (Türkçe)
-├── CONTRIBUTING.md                   # Katkı rehberi
-└── CHANGELOG.md                      # Versiyon geçmişi
+└── logs/                             # Log dosyaları (çalışma sırasında oluşur)
 ```
 
 ## 📦 Modül Organizasyonu
@@ -106,17 +78,6 @@ all-detection-system/
   - Kare doğrulama
   - Kalite kontrolleri
   - Hata kurtarma
-
-- `video_url_handler.py`: URL video desteği
-  - YouTube/URL işleme
-  - Akış yönetimi
-
-### UI (`src/ui/`)
-**Amaç**: Kullanıcı arayüzü bileşenleri
-- `streamlit_app.py`: Web arayüzü
-  - Gerçek zamanlı görüntüleme
-  - Kontroller ve ayarlar
-  - İstatistik paneli
 
 ## 🔧 Yapılandırma Yönetimi
 
