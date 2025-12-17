@@ -480,7 +480,7 @@ Bu proje MIT Lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICE
 
 Sorular veya öneriler için:
 - **Email**: ka5898522@gmail.com
-- **GitHub Issues**: [Issues](https://github.com/comandoo-cell/fall-detection-system/issues)
+- **GitHub I**: ([https://github.com/comandoo-cell/fall-detection-system/issues](https://github.com/comandoo-cell))
 
 ## 🙏 Teşekkürler
 
