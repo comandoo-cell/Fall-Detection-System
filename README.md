@@ -484,11 +484,6 @@ Sorular veya öneriler için:
 
 ## 🙏 Teşekkürler
 
-Bu proje aşağıdaki açık kaynak projeleri kullanmaktadır:
-- [MediaPipe](https://mediapipe.dev/) - Google
-- [YOLOv8](https://github.com/ultralytics/ultralytics) - Ultralytics
-- [OpenCV](https://opencv.org/) - OpenCV Team
-- [Streamlit](https://streamlit.io/) - Streamlit Inc.
 
 ---
 
