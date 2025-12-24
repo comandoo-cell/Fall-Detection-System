@@ -74,7 +74,7 @@ Bu proje, **gerçek zamanlı düşme tespiti** için geliştirilmiş, **poz tahm
 </div>
 ### 🎥 Tanıtım Videosu
 
-[YouTube Tanıtım Videosu Buradan İzlenebilir](https://youtu.be/_2Q7J1xXG0Y)
+[YouTube Tanıtım Videosu Buradan İzlenebilir](https://youtu.be/6pRMh8437X4)
 
 
 > 

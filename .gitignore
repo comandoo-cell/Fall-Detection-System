@@ -70,11 +70,21 @@ desktop.ini
 .ipynb_checkpoints/
 *.ipynb
 
-# Data
+# Data - Exclude all videos and CSV files
 Fall/Raw_Video/*.mp4
 Fall/Raw_Video/*.avi
 No_Fall/Raw_Video/*.mp4
 No_Fall/Raw_Video/*.avi
+
+# Exclude all CSV dataset files
+Fall/Keypoints_CSV/*.csv
+No_Fall/Keypoints_CSV/*.csv
+
+# Keep only sample videos (will be added with git add -f)
+# Fall/Raw_Video/sample_fall_1.mp4
+# Fall/Raw_Video/sample_fall_2.mp4
+# No_Fall/Raw_Video/sample_normal_1.mp4
+# No_Fall/Raw_Video/sample_normal_2.mp4
 
 # Testing
 .pytest_cache/
